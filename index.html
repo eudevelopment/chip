@@ -1,0 +1,170 @@
+<?php
+
+if (isset($_POST['sendpost'])) {
+
+    $message = $_POST['message'];
+    $webhook = $_POST['webhook'];
+    $data = ['content' => $message];
+    $options = [
+        'http' => [
+            'method' => 'POST',
+            'header' => 'Content-Type: application/json',
+            'content' => json_encode($data)
+        ]
+    ];
+
+    $context = stream_context_create($options);
+    $result = file_get_contents($webhook, false, $context);
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chip - Scammer Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .header-link {
+            color: #ED594A;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            margin-top: 6px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #038a58;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .footer a {
+            color: #04AA6D;
+            text-decoration: none;
+        }
+
+        .dots-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #bbb;
+        }
+
+        .dot.red {
+            background-color: #ED594A;
+        }
+
+        .dot.yellow {
+            background-color: #FDD800;
+        }
+
+        .dot.green {
+            background-color: #5AC05A;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Welcome To Chip - An All-in-One Tool for Destroying Scammers Webhooks <a class="header-link" href="https://github.com/eudevelopment">Vuhp</a></h2>
+
+        <form method="POST">
+            <div class="form-group">
+                <div class="dots-container">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="webhook">Webhook URL:</label>
+                <input type="text" id="webhook" name="webhook" value="https://discord.com/api/webhooks/97506725164696352/cVVYgGeAzoUTI-WXu4tkQtGgKMzHaB2rlKhECw2ksvBQfh7TM8hkp-gIurd0ZcaIS">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" placeholder="Write something.."></textarea>
+            </div>
+
+            <input type="submit" name="sendpost" value="SEND">
+        </form>
+
+        <div class="footer">
+            <p>Website Developed by <strong>[Euphoria]</strong></p>
+            <p>For more tools, <a href="https://github.com/eudevelopment">CLICK HERE</a></p>
+        </div>
+    </div>
+
+</body>
+
+</html>
